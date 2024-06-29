@@ -1,4 +1,4 @@
 {
-    "jwtPrivateKey": "lyanda_jwtPrivateKey",
-    "db":"lyanda_db"
+    "jwtPrivateKey": "event_jwtPrivateKey",
+    "db":"event_db"
 }

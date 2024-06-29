@@ -9,12 +9,12 @@ require("./startup/db")();
 require("./startup/config")();
 require("./startup/prod")(app);
 
-const port = process.env.PORT || 1300;
+const port = process.env.PORT || 1250;
 
 const server = http.createServer(app);
 
 server.listen(port, () => {
-  winston.info(`DATFRI-LYANDAUG SERVER RUNNING ON PORT: ${ port }...`);
+  winston.info(`EVENTS SERVER RUNNING ON PORT: ${ port }...`);
 });
 
 module.exports = server;
