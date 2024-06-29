@@ -4,32 +4,42 @@ const jwt = require("jsonwebtoken");
 const config = require("config");
 
 const userSchema = new mongoose.Schema({
-
-  phoneNumber: {
+  
+  email: {
     type: String,
     required: true,
+    minlength: 5,
+    maxlength: 255,
+    unique: true,
   },
 
-  bikeManufacturer: {
+  userName: {
+    type: String,
+    default: "username"
+  },
+
+  userType: {
+    type: String,
+    default: 'standard'
+  },
+
+  contact: {
+    type: String,
+    default: "N/A",
+  },
+
+  address: {
     type: String,
     default: "N/A"
   },
 
-  batteryCapacity: {
+  city: {
     type: String,
     default: "N/A"
-  },
+  }
 
-  numberPlateValue: {
-    type: String,
-    default: "N/A"
-  },
-
-  otp: {
-    type: String,
-    default: ""
-  },
-
+}, {
+  timestamps: true
 });
 
 
@@ -37,10 +47,11 @@ userSchema.methods.generateAuthToken = function () {
   const token = jwt.sign(
     {
       _id: this._id,
-      phoneNumber: this.phoneNumber,
-      bikeManufacturer: this.bikeManufacturer,
-      batteryCapacity: this.batteryCapacity,
-      numberPlateValue: this.numberPlateValue
+      email: this.email,
+      userName: this.userName,
+      contact: this.contact,
+      address: this.address,
+      city: this.city
     },
     config.get("jwtPrivateKey")
   );
@@ -51,7 +62,7 @@ const User = mongoose.model("User", userSchema);
 
 function validateUser(user) {
   const schema = {
-    phoneNumber: Joi.string().min(12).max(13).required(),
+    email: Joi.string().min(5).max(255).email().required(),
   };
 
   return (result = Joi.validate(user, schema));
