@@ -1,4 +1,4 @@
 {
-    "jwtPrivateKey": "",
-    "db": "mongodb://localhost/lyanda"
+    "jwtPrivateKey": "C@events8359",
+    "db": "mongodb+srv://copratesolutions:igQThibvqaF6mjA5@events.ho7qjyj.mongodb.net/?retryWrites=true&w=majority&appName=events"
 }

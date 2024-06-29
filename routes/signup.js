@@ -34,6 +34,8 @@ router.post("/", async (req, res) => {
       _.pick(req.body, ["email"])
     );
 
+    await platFormUser.save();
+
     const authenticationToken = platFormUser.generateAuthToken();
 
     res.status(200).send(authenticationToken);
